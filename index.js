@@ -25,8 +25,8 @@ export default function compose(componentOptions) {
             </ParentComponent>
           )
         },
-      function initial(...args) {
-        return children(args)
+      function initial({ __composedArgs }) {
+        return children([...__composedArgs])
       }
     )
 

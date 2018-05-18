@@ -1,6 +1,6 @@
 {
   "name": "@kyleholzinger/react-compose",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Compose react components to reduce over render props",
   "main": "dist/index.js",
   "repository": "https://github.com/kyleholzinger/react-compose",

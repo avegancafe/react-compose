@@ -12,19 +12,13 @@ export default function compose(componentOptions) {
             >
               {(...parentArgs) => (
                 <ComposedChildren
-                  {...{ ...props, ...intermediateProps }}
                   __composedArgs={[
                     ...(parentArgs || []),
                     ...(intermediateProps.__composedArgs || [])
                   ]}
                 >
                   {React.Children.map(intermediateProps.children, child => {
-                    return (
-                      <child.type
-                        {...child.props}
-                        __composedArgs={parentArgs}
-                      />
-                    )
+                    return <child.type __composedArgs={parentArgs} />
                   })}
                 </ComposedChildren>
               )}

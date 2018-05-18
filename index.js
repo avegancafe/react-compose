@@ -6,7 +6,10 @@ export default function compose(componentOptions) {
       (ComposedChildren, { component: ParentComponent, props }) =>
         function ComposedWrapper(intermediateProps) {
           return (
-            <ParentComponent __composedArgs={intermediateProps.__composedArgs}>
+            <ParentComponent
+              {...props}
+              __composedArgs={intermediateProps.__composedArgs}
+            >
               {(...parentArgs) => (
                 <ComposedChildren
                   {...{ ...props, ...intermediateProps }}

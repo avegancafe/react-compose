@@ -3,30 +3,27 @@ import React from 'react'
 export default function compose(componentOptions) {
   return ({ children }) => {
     const ComposedComponents = componentOptions.reduceRight(
-      (ComposedChildren, { component: ParentComponent, props }) =>
+      ((ComposedChildren, ComponentInstance) =>
         function ComposedWrapper(intermediateProps) {
-          return (
-            <ParentComponent
-              {...props}
-              __composedArgs={intermediateProps.__composedArgs}
-            >
-              {(...parentArgs) => (
-                <ComposedChildren
-                  __composedArgs={[
-                    ...(parentArgs || []),
-                    ...(intermediateProps.__composedArgs || [])
-                  ]}
-                >
-                  {React.Children.map(intermediateProps.children, child => {
-                    return <child.type __composedArgs={parentArgs} />
-                  })}
-                </ComposedChildren>
-              )}
-            </ParentComponent>
+          return React.cloneElement(
+            ComponentInstance,
+            ComponentInstance.props,
+            (...parentArgs) => (
+              <ComposedChildren
+                __composedArgs={[
+                  ...(parentArgs || []),
+                  ...(intermediateProps.__composedArgs || [])
+                ]}
+              >
+                {React.Children.map(intermediateProps.children, child => {
+                  return <child.type __composedArgs={parentArgs} />
+                })}
+              </ComposedChildren>
+            )
           )
-        },
+        }),
       function initial({ __composedArgs }) {
-        return children([...__composedArgs])
+        return children([...__composedArgs.reverse()])
       }
     )
 

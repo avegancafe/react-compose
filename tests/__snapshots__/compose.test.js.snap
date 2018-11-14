@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#compose with a list of component instances passes args through to render function in order 1`] = `
+<AppWithRenderers>
+  <Component>
+    <ComposedWrapper>
+      <MousePosition
+        relative={true}
+      >
+        <ComposedWrapper
+          __composedArgs={
+            Array [
+              Object {
+                "x": 300,
+                "y": 427,
+              },
+            ]
+          }
+        >
+          <Subscription
+            url="/api/notes"
+          >
+            <ComposedWrapper
+              __composedArgs={
+                Array [
+                  Object {
+                    "data": Array [
+                      "note 1",
+                      "note 2",
+                    ],
+                  },
+                  Object {
+                    "x": 300,
+                    "y": 427,
+                  },
+                ]
+              }
+            >
+              <Validate>
+                <initial
+                  __composedArgs={
+                    Array [
+                      Object {
+                        "x": 300,
+                        "y": 427,
+                      },
+                      Object {
+                        "data": Array [
+                          "note 1",
+                          "note 2",
+                        ],
+                      },
+                      Object {
+                        "predicate": [Function],
+                      },
+                    ]
+                  }
+                >
+                  <div>
+                    hi
+                  </div>
+                </initial>
+              </Validate>
+            </ComposedWrapper>
+          </Subscription>
+        </ComposedWrapper>
+      </MousePosition>
+    </ComposedWrapper>
+  </Component>
+</AppWithRenderers>
+`;
